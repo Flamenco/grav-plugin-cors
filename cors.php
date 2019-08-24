@@ -1,4 +1,5 @@
 <?php
+
 namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
@@ -28,10 +29,11 @@ class CorsPlugin extends Plugin
     public function onPluginsInitialized()
     {
         // header("Access-Control-Allow-Origin: *");
-        $routes = (array) $this->config->get('plugins.cors.routes');
-        $origins = (array) $this->config->get('plugins.cors.origins');
-        $methods = (array) $this->config->get('plugins.cors.methods');
-        $expose = (array) $this->config->get('plugins.cors.expose');
+        $routes = (array)$this->config->get('plugins.cors.routes');
+        $origins = (array)$this->config->get('plugins.cors.origins');
+        $methods = (array)$this->config->get('plugins.cors.methods');
+        $allowHeaders = (array)$this->config->get('plugins.cors.allowHeaders');
+        $expose = (array)$this->config->get('plugins.cors.expose');
         $credentials = $this->config->get('plugins.cors.credentials');
 
         if (!count($routes) || in_array('*', $routes)) {
@@ -68,6 +70,10 @@ class CorsPlugin extends Plugin
 
             if (count($methods)) {
                 header("Access-Control-Allow-Methods: " . implode(', ', $methods));
+            }
+
+            if (count($allowHeaders)) {
+                header("Access-Control-Allow-Headers: " . implode(', ', $allowHeaders));
             }
 
             if (count($expose)) {
