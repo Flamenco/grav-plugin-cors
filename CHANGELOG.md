@@ -1,3 +1,9 @@
+# v1.0.3
+## xx/xx/2019
+
+1. [](#improved)
+    * Add 'Allow Headers' option
+
 # v1.0.2
 ## xx/xx/2017
 
